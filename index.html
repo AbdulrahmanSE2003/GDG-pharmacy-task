@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pharmacy System</title>
+
+    <!-- Link Css -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <nav id="sidebar" class="w-full bg-white grid grid-cols-2 items-center">
+      <div class="h-full flex-start nav-logo gap-2">
+        <!-- Nav Logo Icon -->
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#008080"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-shield-plus-icon lucide-shield-plus"
+          >
+            <path
+              d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+            />
+            <path d="M9 12h6" />
+            <path d="M12 9v6" />
+          </svg>
+        </div>
+
+        <!-- Nav Logo Text -->
+        <span class="nav-logo-text">PharmaCare</span>
+
+        <div class="nav-search flex-start gap-2">
+          <span
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#6c6a6a"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search-icon lucide-search"
+            >
+              <path d="m21 21-4.34-4.34" />
+              <circle cx="11" cy="11" r="8" /></svg
+          ></span>
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search..."
+          />
+        </div>
+      </div>
+      <div class="h-full flex-end gap-4">
+        <!-- Nav Links -->
+        <ul class="nav-links flex">
+          <a href="#" class="transition">
+            <li>Home</li>
+          </a>
+          <a href="#" class="transition">
+            <li>Products</li>
+          </a>
+          <a href="#" class="transition">
+            <li>Cart</li>
+          </a>
+        </ul>
+
+        <!-- Nav Buttons -->
+        <div class="icon-btn transition">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-shopping-cart-icon lucide-shopping-cart"
+          >
+            <circle cx="8" cy="21" r="1" />
+            <circle cx="19" cy="21" r="1" />
+            <path
+              d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+            />
+          </svg>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
