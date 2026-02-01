@@ -73,6 +73,11 @@ button {
   }
 }
 
+::selection {
+  background-color: var(--brand-teal);
+  color: var(--brand-bg);
+}
+
 /* Framework classes */
 .flex {
   display: flex;
