@@ -17,125 +17,215 @@
     />
   </head>
   <body>
+    <!-- Toast -->
+    <div class="toast flex flex-center">
+      <div class="toast-msg up shadow-deep transition"></div>
+    </div>
 
+    <!-- navbar -->
+    <nav id="navbar" class="bg-white flex items-center">
+      <div class="nav-logo flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#008080"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+          />
+          <path d="M9 12h6" />
+          <path d="M12 9v6" />
+        </svg>
+        <span class="nav-logo-text">PharmaCare</span>
+      </div>
 
-        <!-- Toast -->
-        <div class="toast flex flex-center">
-          <div class="toast-msg up shadow-deep transition"></div>
+      <ul class="nav-links flex items-center" id="nav-menu">
+        <li><a href="#" class="transition active">home</a></li>
+        <li><a href="#" class="transition">products</a></li>
+        <li><a href="#" class="transition">cart</a></li>
+      </ul>
+
+      <div class="nav-actions flex items-center gap-4">
+        <div class="icon-btn transition">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="8" cy="21" r="1" />
+            <circle cx="19" cy="21" r="1" />
+            <path
+              d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+            />
+          </svg>
         </div>
+        <div class="icon-btn transition menu-toggle" id="mobile-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+          </svg>
+        </div>
+      </div>
+    </nav>
 
-        <!-- navbar -->
-        <nav id="navbar" class="bg-white flex items-center">
-          <div class="nav-logo flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-              <path d="M9 12h6" /><path d="M12 9v6" />
-            </svg>
-            <span class="nav-logo-text">PharmaCare</span>
-          </div>
+    <div id="root"></div>
 
-          <ul class="nav-links flex items-center" id="nav-menu">
-            <li><a href="#" class="transition active">home</a></li>
-            <li><a href="#" class="transition">products</a></li>
-            <li><a href="#" class="transition">cart</a></li>
-          </ul>
-
-          <div class="nav-actions flex items-center gap-4">
-            <div class="icon-btn transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" />
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-              </svg>
-            </div>
-            <div class="icon-btn transition menu-toggle" id="mobile-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-            </div>
-          </div>
-          
-        </nav>
-
-        <div id='root'></div>
-
-        <footer>
-          <div class="container">
-            <div class="flex flex-col gap-10">
-              <!-- Footer Links -->
-              <div class="grid grid-cols-4 gap-18" >
-              <div class="footer-column flex flex-col gap-4">
-                <div class="footer-logo flex gap-4">
-                  <span>
-                    <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#008080"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
-              />
-              <path d="M9 12h6" />
-              <path d="M12 9v6" />
-            </svg>
-                  </span>
-                  <h6>PharmaCare</h6>
-                </div>
-                <p class="text-muted">Your trusted partner in healthcare since 1998. Providing quality medicines and wellness products directly to your doorstep.
-                </p>
+    <footer>
+      <div class="container">
+        <div class="flex flex-col gap-10">
+          <!-- Footer Links -->
+          <div class="grid grid-cols-4 gap-18">
+            <div class="footer-column flex flex-col gap-4">
+              <div class="footer-logo flex gap-4">
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#008080"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                    />
+                    <path d="M9 12h6" />
+                    <path d="M12 9v6" />
+                  </svg>
+                </span>
+                <h6>PharmaCare</h6>
               </div>
-              <div class="footer-column flex flex-col gap-4">
-                  <h6>Quick Links</h6>
-                  <ul class="quick-links flex flex-col gap-4">
-                    <li class="footer-link transition">About Us</li>
-                    <li class="footer-link transition">Contact Us</li>
-                    <li class="footer-link transition">Prescription Upload</li>
-                    <li class="footer-link transition">Pharmacy Finder</li>
-                  </ul>
-              </div><div class="footer-column flex flex-col gap-4">
-                  <h6>Policies</h6>
-                  <ul class="quick-links flex flex-col gap-4">
-                    <li class="footer-link transition">Shipping Policies</li>
-                    <li class="footer-link transition">Returns & Refunds</li>
-                    <li class="footer-link transition">Privacy Policy</li>
-                    <li class="footer-link transition">Terms of Services</li>
-                  </ul>
-              </div><div class="footer-column flex flex-col gap-4">
-                  <h6>Contact</h6>
-                  <ul class="footer-contact flex flex-col gap-4">
-    <li class="footer-link transition flex flex-start gap-2">
-        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></span>
-        <span>+20 0123 456 7890</span>
-    </li>
-
-    <li class="footer-link transition flex flex-start gap-2">
-        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-        <span>support@pharmacare.com</span>
-    </li>
-
-    <li class="footer-link transition flex flex-start gap-2">
-        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        <span>Alexandria, Egypt</span>
-    </li>
-</ul>
-              </div>
+              <p class="text-muted">
+                Your trusted partner in healthcare since 1998. Providing quality
+                medicines and wellness products directly to your doorstep.
+              </p>
             </div>
+            <div class="footer-column flex flex-col gap-4">
+              <h6>Quick Links</h6>
+              <ul class="quick-links flex flex-col gap-4">
+                <li class="footer-link transition">About Us</li>
+                <li class="footer-link transition">Contact Us</li>
+                <li class="footer-link transition">Prescription Upload</li>
+                <li class="footer-link transition">Pharmacy Finder</li>
+              </ul>
+            </div>
+            <div class="footer-column flex flex-col gap-4">
+              <h6>Policies</h6>
+              <ul class="quick-links flex flex-col gap-4">
+                <li class="footer-link transition">Shipping Policies</li>
+                <li class="footer-link transition">Returns & Refunds</li>
+                <li class="footer-link transition">Privacy Policy</li>
+                <li class="footer-link transition">Terms of Services</li>
+              </ul>
+            </div>
+            <div class="footer-column flex flex-col gap-4">
+              <h6>Contact</h6>
+              <ul class="footer-contact flex flex-col gap-4">
+                <li class="footer-link transition flex flex-start gap-2">
+                  <span
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-phone-icon lucide-phone"
+                    >
+                      <path
+                        d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+                      /></svg
+                  ></span>
+                  <span>+20 0123 456 7890</span>
+                </li>
 
-            <!-- Divider -->
-            <hr>
-            <!-- CopyRight -->
-            <p class="text-muted copyright">2026 &copy; PharmaCare Digital Solutions. All Rights Reserved. Not for medical emergencies.
-</p>
+                <li class="footer-link transition flex flex-start gap-2">
+                  <span
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-mail"
+                    >
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path
+                        d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                      /></svg
+                  ></span>
+                  <span>support@pharmacare.com</span>
+                </li>
+
+                <li class="footer-link transition flex flex-start gap-2">
+                  <span
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-map-pin"
+                    >
+                      <path
+                        d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="3" /></svg
+                  ></span>
+                  <span>Alexandria, Egypt</span>
+                </li>
+              </ul>
+            </div>
           </div>
-            </div>
-        </footer>
 
+          <!-- Divider -->
+          <hr />
+          <!-- CopyRight -->
+          <p class="text-muted copyright">
+            2026 &copy; PharmaCare Digital Solutions. All Rights Reserved. Not
+            for medical emergencies.
+          </p>
+        </div>
+      </div>
+    </footer>
 
-        <script type="module" src="js/script.js"></script>
-      </body>
-    </html>
+    <script type="module" src="js/script.js"></script>
   </body>
 </html>

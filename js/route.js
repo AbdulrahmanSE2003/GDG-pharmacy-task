@@ -19,7 +19,7 @@ export const homePage = `<!-- Hero Section -->
                     </p>
                   </div>
 
-                  <button onclick"loadPage(productsPage)" class="transition">Show Now</button>
+                  <button onclick"loadPage(productsPage)" class="transition btn">Show Now</button>
 
                   <!-- Stats -->
                   <div class="stat-container flex gap-6">
@@ -123,9 +123,16 @@ export const productsPage = `<section id="products">
             </div>
           </section>`;
 
-export const cartPage = `<section><div class="container">
-            cart page
-          </div></section>`;
+export const cartPage = `<section id="cart">
+        <div class="container">
+          <div class="flex justify-between items-center">
+            <h3 class="section-heading">Your Cart</h3>
+            <p class=""><span id="qty">...</span> items in your cart</p>
+          </div>
+
+          <div class="cart-list grid grid-cols-2 gap-14"></div>
+        </div>
+      </section>`;
 
 export const loginPage = `<section><div class="container">
             login page

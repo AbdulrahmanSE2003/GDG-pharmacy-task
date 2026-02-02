@@ -38,6 +38,9 @@ navTabs.forEach((navTab) =>
     // adding active class on clicked tab
     navTab.classList.add("active");
 
+    // Close mobile menu if open
+    navMenu.classList.remove("active");
+
     // loading pages through navbar
     let pageName = pages[navTab.textContent];
     loadPage(pageName);
@@ -50,6 +53,10 @@ function loadPage(page = homePage) {
 
   if (document.querySelector("#productsContainer")) {
     showProducts();
+  }
+
+  if (document.querySelector("#cart")) {
+    showCartList();
   }
 }
 
@@ -105,8 +112,7 @@ function showProducts() {
 // NOTE control cart logic
 
 // init at start
-let cart = [];
-localStorage.setItem("cart", cart);
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // adding products to cart
 function handleAddToCart(id) {
@@ -122,6 +128,66 @@ function handleAddToCart(id) {
   cart.push(product);
   localStorage.setItem("cart", JSON.stringify(cart));
   showToast("Product Added to cart successfully!");
+}
+
+// cart display logic
+function showCartList() {
+  const cartDiv = document.querySelector(".cart-list");
+  if (!cartDiv) return;
+
+  cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cartDiv.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartDiv.innerHTML = "<h3 class='text-center py-10'>Your cart is empty!</h3>";
+    return;
+  }
+
+  cart.map(item => {
+    cartDiv.innerHTML += `<div class="cart-item bg-white flex shadow-soft items-center gap-8">
+              <div class="img-wrapper">
+                <img class="w-full" src="${item.image}" alt="${item}" />
+              </div>
+
+              <div class="cart-item-info flex flex-col gap-4 justify-start">
+                <h5>${item.name}</h5>
+                <p>${item.category}</p>
+                <span class="text-brand">$${item.price}</span>
+              </div>
+
+              <div class="cart-item-actions flex flex-col gap-8">
+                <span>
+                  <svg
+                    data-id="1"
+                    class="transition"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-trash2-icon lucide-trash-2"
+                  >
+                    <path d="M10 11v6" />
+                    <path d="M14 11v6" />
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                    <path d="M3 6h18" />
+                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                  </svg>
+                </span>
+
+                <div class="qty-controller flex items-center gap-4">
+                  <button class="qty-btn transition">-</button>
+                  <span class="qty-value">1</span>
+                  <button class="qty-btn transition">+</button>
+                </div>
+              </div>
+</div>`;
+  });
 }
 
 // NOTE Toast Notification
