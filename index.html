@@ -17,10 +17,54 @@
     />
   </head>
   <body>
-    <!-- navbar -->
-        <nav id="navbar" class="w-full bg-white flex items-center">
-          <div class="h-full flex-start nav-logo gap-2">
-            <svg
+
+
+        <!-- Toast -->
+        <div class="toast flex flex-center">
+          <div class="transition shadow-deep toast-msg up">Product Added to cart successfully</div>
+        </div>
+
+        <!-- navbar -->
+        <nav id="navbar" class="bg-white flex items-center">
+          <div class="nav-logo flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+              <path d="M9 12h6" /><path d="M12 9v6" />
+            </svg>
+            <span class="nav-logo-text">PharmaCare</span>
+          </div>
+
+          <ul class="nav-links flex items-center" id="nav-menu">
+            <li><a href="#" class="transition active">home</a></li>
+            <li><a href="#" class="transition">products</a></li>
+            <li><a href="#" class="transition">cart</a></li>
+          </ul>
+
+          <div class="nav-actions flex items-center gap-4">
+            <div class="icon-btn transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" />
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+              </svg>
+            </div>
+            <div class="icon-btn transition menu-toggle" id="mobile-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+            </div>
+          </div>
+          
+        </nav>
+
+        <div id='root'></div>
+
+        <footer>
+          <div class="container">
+            <div class="flex flex-col gap-10">
+              <!-- Footer Links -->
+              <div class="grid grid-cols-4 gap-18" >
+              <div class="footer-column flex flex-col gap-4">
+                <div class="footer-logo flex gap-4">
+                  <span>
+                    <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -37,153 +81,60 @@
               <path d="M9 12h6" />
               <path d="M12 9v6" />
             </svg>
-            <span class="nav-logo-text">PharmaCare</span>
+                  </span>
+                  <h6>PharmaCare</h6>
+                </div>
+                <p class="text-muted">Your trusted partner in healthcare since 1998. Providing quality medicines and wellness products directly to your doorstep.
+                </p>
+              </div>
+              <div class="footer-column flex flex-col gap-4">
+                  <h6>Quick Links</h6>
+                  <ul class="quick-links flex flex-col gap-4">
+                    <li class="footer-link transition">About Us</li>
+                    <li class="footer-link transition">Contact Us</li>
+                    <li class="footer-link transition">Prescription Upload</li>
+                    <li class="footer-link transition">Pharmacy Finder</li>
+                  </ul>
+              </div><div class="footer-column flex flex-col gap-4">
+                  <h6>Policies</h6>
+                  <ul class="quick-links flex flex-col gap-4">
+                    <li class="footer-link transition">Shipping Policies</li>
+                    <li class="footer-link transition">Returns & Refunds</li>
+                    <li class="footer-link transition">Privacy Policy</li>
+                    <li class="footer-link transition">Terms of Services</li>
+                  </ul>
+              </div><div class="footer-column flex flex-col gap-4">
+                  <h6>Contact</h6>
+                  <ul class="footer-contact flex flex-col gap-4">
+    <li class="footer-link transition flex flex-start gap-2">
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></span>
+        <span>+20 0123 456 7890</span>
+    </li>
 
-            <div class="nav-search flex-start gap-2 transition">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#6c6a6a"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m21 21-4.34-4.34" />
-                <circle cx="11" cy="11" r="8" />
-              </svg>
-              <input type="text" placeholder="Search..." />
+    <li class="footer-link transition flex flex-start gap-2">
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+        <span>support@pharmacare.com</span>
+    </li>
+
+    <li class="footer-link transition flex flex-start gap-2">
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span>Alexandria, Egypt</span>
+    </li>
+</ul>
+              </div>
             </div>
+
+            <!-- Divider -->
+            <hr>
+            <!-- CopyRight -->
+            <p class="text-muted copyright">2026 &copy; PharmaCare Digital Solutions. All Rights Reserved. Not for medical emergencies.
+</p>
           </div>
-
-          <div class="h-full flex-end gap-4">
-            <ul class="nav-links flex" id="nav-menu">
-              <li><a href="#" class="transition active">Home</a></li>
-              <li><a href="#" class="transition">Products</a></li>
-              <li><a href="#" class="transition">Cart</a></li>
-            </ul>
-
-            <div class="flex items-center gap-4">
-              <div class="icon-btn transition">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="8" cy="21" r="1" />
-                  <circle cx="19" cy="21" r="1" />
-                  <path
-                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
-                  />
-                </svg>
-              </div>
-              <div class="icon-btn transition menu-toggle" id="mobile-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
-              </div>
             </div>
-          </div>
-        </nav>
+        </footer>
 
-        <div id="root" class="">
-          <!-- Hero Section -->
-          <section id="hero" class="hero-section h-full flex">
-            <div class="container">
-              <div class="grid grid-cols-2 hero-content w-full">
-                <!-- Left side content -->
-                <div class="h-full flex flex-col l-content gap-6">
-                  <span class="text-brand">Secure &amp; Reliable</span>
 
-                  <h1 class="">
-                    Your Trusted Online Pharmacy, Delivered to Your Door
-                  </h1>
-
-                  <div class="w-full">
-                    <p>
-                      Get authentic medicines and healthcare products with fast,
-                      reliable delivery. Expert pharmacists available for
-                      consultation
-                      <span class="text-brand">24/7</span>.
-                    </p>
-                  </div>
-
-                  <button class="transition">Show Now</button>
-
-                  <!-- Stats -->
-                  <div class="stat-container flex gap-6">
-                    <div class="stat flex flex-col gap-2">
-                      <span>+15K</span>
-                      <p>Happy Customers</p>
-                    </div>
-                    <div class="stat flex flex-col gap-2">
-                      <span>+2K</span>
-                      <p>Licensed Products</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Right side Image -->
-                <div class="r-content">
-                  <div>
-                    <img src="images/hero.png" class="hero-image w-full shadow-deep"/>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Categories Section -->
-          <section id="categories">
-            <div class="container">
-              <h3 class="section-heading">Categories</h3>
-              <div class="categories grid grid-cols-3 gap-20">
-                <div class="category-item flex flex-center flex-col shadow-deep transition gap-2">
-                  <div class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pill-icon lucide-pill"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
-                  </div>
-
-                  <span class="transition">Medicines</span>
-                </div>
-                <div class="category-item flex flex-center flex-col shadow-deep transition gap-2">
-                  <div class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-stethoscope-icon lucide-stethoscope"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg>
-                  </div>
-
-                  <span class="transition">Devices</span>
-                </div>
-                <div class="category-item flex flex-center flex-col shadow-deep transition gap-2 ">
-                  <div class="icon-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby-icon lucide-baby"><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M15 12h.01"/><path d="M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/><path d="M9 12h.01"/></svg>
-                  </div>
-
-                  <span class="transition">Baby Care</span>
-                </div>
-                
-              </div>
-              
-            </div>
-          </section>
-          
-          
-          <!-- Why Us Section -->
-          <section id="why-us">
-            <div class="container">
-              <div>s</div>
-              <div>s</div>
-            </div>
-          </section>
-
-        </div>
-        <script src="js/script.js"></script>
-        <script src="js/data.js"></script>
+        <script type="module" src="js/script.js"></script>
       </body>
     </html>
   </body>
