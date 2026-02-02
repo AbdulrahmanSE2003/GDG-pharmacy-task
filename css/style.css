@@ -111,7 +111,7 @@ button.add-to-cart {
 
 .toast {
   position: fixed;
-  right: 24px;
+  left: 24px;
   top: 24px;
   z-index: 1001;
   pointer-events: none;
@@ -856,7 +856,7 @@ section#cart {
   #navbar {
     padding: 0 24px;
 
-    .menu-toggle {
+    .nav-actions .menu-toggle {
       display: block;
     }
 
@@ -895,7 +895,7 @@ section#cart {
     text-align: center;
 
     .hero-content {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: 40px;
 
       .l-content {
