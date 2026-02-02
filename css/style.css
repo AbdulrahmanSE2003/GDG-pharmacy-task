@@ -178,6 +178,27 @@ button {
 .gap-6 {
   gap: 1.4rem;
 }
+.gap-8 {
+  gap: 1.8rem;
+}
+.gap-10 {
+  gap: 2.2rem;
+}
+.gap-12 {
+  gap: 2.6rem;
+}
+.gap-14 {
+  gap: 3rem;
+}
+.gap-16 {
+  gap: 3.4rem;
+}
+.gap-18 {
+  gap: 3.8rem;
+}
+.gap-20 {
+  gap: 4.2rem;
+}
 
 .text-main {
   color: var(--brand-teal);
@@ -204,7 +225,7 @@ button {
 
 .shadow-brand {
   box-shadow: 0 10px 20px -5px
-    color-mix(in srgb, var(--brand-teal), transparent 85%);
+    color-mix(in srgb, var(--brand-teal), transparent 60%);
 }
 
 .shadow-deep {
@@ -228,7 +249,6 @@ button {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  display: flex;
   padding: 32px 40px;
 }
 
@@ -245,7 +265,6 @@ button {
 
   .nav-logo {
     width: 50%;
-    padding: 0px 16px;
     flex-grow: 1;
 
     .nav-logo-text {
@@ -297,6 +316,24 @@ button {
 }
 
 /* NOTE Root div */
+
+/* NOTE Common styling */
+.section-heading {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background-color: var(--brand-teal);
+    left: 0;
+    top: 120%;
+  }
+}
 
 /* NOTE hero section */
 .hero-section {
@@ -351,9 +388,44 @@ button {
   }
 }
 
-/* NOTE Responsive */
+/* NOTE Categories */
+.categories {
+  padding: 3rem 0;
 
-/* --- Responsive Design --- */
+  .category-item {
+    background-color: white;
+    border-radius: 16px;
+    min-height: 224px;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px -5px
+        color-mix(in srgb, var(--brand-teal), transparent 60%);
+    }
+
+    .icon-circle {
+      background-color: var(--brand-bg-second);
+      border-radius: 50%;
+      padding: 20px;
+      height: 70px;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 0.9 rem;
+    }
+    &:hover span {
+      color: var(--brand-teal);
+    }
+  }
+}
+
+/* NOTE Responsive */
 
 @media (max-width: 1024px) {
   .container {
