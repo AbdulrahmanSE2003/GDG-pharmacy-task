@@ -45,11 +45,10 @@ navTabs.forEach((navTab) =>
 );
 
 //  NOTE controlling page dynamically
-function loadPage(page = productsPage) {
+function loadPage(page = homePage) {
   rootDiv.innerHTML = page;
 
   if (document.querySelector("#productsContainer")) {
-    console.log("exist");
     showProducts();
   }
 }
@@ -57,9 +56,15 @@ function loadPage(page = productsPage) {
 // NOTE Load HomePage at first
 loadPage();
 
-//  NOTE Controlling shop now button
+//  NOTE Controlling clicks important clicks in site
 rootDiv.addEventListener("click", (e) => {
-  if (e.target.textContent === "Show Now") loadPage(productsPage);
+  if (e.target.textContent.trim() === "Add to Cart") {
+    const id = e.target.dataset.id;
+    handleAddToCart(+id);
+  }
+  if (e.target.textContent.trim() === "Show Now")
+    // Controlling shop now button
+    loadPage(productsPage);
 });
 
 // NOTE showing products logic
@@ -89,7 +94,7 @@ function showProducts() {
           ${product.discount > 0 ? `<span class="old text-muted">${product.price}</span>` : ""}
         </div>
 
-        <button class="add-to-cart transition flex flex-center gap-2">Add to Cart
+        <button data-id="${product.id}" class="add-to-cart transition flex flex-center gap-2">Add to Cart
         <span><svg class="transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span></button>
         </div>
       </div>
@@ -99,4 +104,46 @@ function showProducts() {
 
 // NOTE control cart logic
 
-// init at
+// init at start
+let cart = [];
+localStorage.setItem("cart", cart);
+
+// adding products to cart
+function handleAddToCart(id) {
+  const product = products.find((p) => p.id === id);
+
+  // return if already exist
+  if (cart.find((p) => p.id === id)) {
+    showToast("Product Already Exist in Cart");
+    return;
+  }
+
+  // adding product and save it to local storage
+  cart.push(product);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showToast("Product Added to cart successfully!");
+}
+
+// NOTE Toast Notification
+const toast = document.querySelector(".toast-msg");
+
+let toastTimeout;
+
+function showToast(message = "") {
+  if (!message) return;
+
+  clearTimeout(toastTimeout);
+
+  toast.style.transition = "none";
+  toast.classList.replace("down", "up");
+
+  void toast.offsetWidth;
+
+  toast.style.transition = "all 0.7s ease-in-out";
+  toast.textContent = message;
+  toast.classList.replace("up", "down");
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.replace("down", "up");
+  }, 3000);
+}

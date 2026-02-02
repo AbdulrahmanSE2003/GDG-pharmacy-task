@@ -107,32 +107,56 @@ button.add-to-cart {
   background-color: var(--brand-teal);
   color: var(--brand-bg);
 }
-
 .toast {
-  position: absolute;
-  background: transparent;
-  width: 350px;
-  height: 90px;
-  right: 0px;
-  top: 0px;
+  position: fixed;
+  right: 24px;
+  top: 24px;
   z-index: 1001;
+  pointer-events: none;
 
   .toast-msg {
-    background-color: #eeeeee;
-    padding: 16px 40px;
-    border-radius: 8px;
+    /* Colors & Glassmorphism */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    color: #1a1a1a;
 
-    background-color: #eeeeee;
-    padding: 16px 40px;
+    /* Spacing & Border */
+    padding: 14px 28px;
     border-radius: 12px;
-    transition: transform ease-in-out 0.7s;
-    font-size: 1.09rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    /* Typography */
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    /* Shadow (Deep & Soft) */
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.08),
+      0 8px 10px -6px rgba(0, 0, 0, 0.05);
+
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
 
     &.up {
-      transform: translateY(-100px);
+      transform: translateY(-20px) scale(0.9);
+      opacity: 0;
     }
+
     &.down {
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    /* Green indicator on the left */
+    &::before {
+      content: "";
+      width: 4px;
+      height: 20px;
+      background: #008080;
+      border-radius: 10px;
     }
   }
 }
