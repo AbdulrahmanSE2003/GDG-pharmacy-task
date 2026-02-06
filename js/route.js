@@ -130,10 +130,93 @@ export const cartPage = `<section id="cart">
             <p class=""><span id="qty">...</span> items in your cart</p>
           </div>
 
-          <div class="cart-list grid grid-cols-2 gap-14"></div>
+          <div class="flex order-details">
+            <div class="cart-list grid grid-cols-1 gap-6"></div>
+            <div class="checkout shadow-deep flex flex-col gap-6">
+              <h3>Order Summery</h3>
+
+              <ul class="flex flex-col gap-4">
+                <li class="flex items-center justify-between">
+                  <span>Subtotal</span>
+                  <span class="subtotal">$60.47</span>
+                </li>
+                <li class="flex items-center justify-between">
+                  <span>Shipping</span>
+                  <span class="free">Free</span>
+                </li>
+                <hr />
+                <li class="flex items-center justify-between total">
+                  <span>Total</span>
+                  <span class='total-price'>$60.47</span>
+                </li>
+              </ul>
+              <button class="btn w-full transition flex flex-center gap-4">Proceed To checkout <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f3f3f3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-keyhole-icon lucide-lock-keyhole"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg></span></button>
+            </div>
+          </div>
         </div>
       </section>`;
 
-export const loginPage = `<section><div class="container">
-            login page
-          </div></section>`;
+export const loginPage = `<div class="login-wrapper flex flex-center">
+        <div class="login-card shadow-deep bg-white transition">
+          <div class="login-header flex flex-col items-center gap-2">
+            <div class="login-logo">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#008080"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                />
+                <path d="M9 12h6" />
+                <path d="M12 9v6" />
+              </svg>
+            </div>
+            <h2>Welcome Back</h2>
+            <p class="text-muted text-sm">Please enter your details to login</p>
+          </div>
+
+          <form class="login-form flex flex-col gap-4" id="loginForm">
+            <div class="input-group flex flex-col gap-2">
+              <label>Email Address</label>
+              <input
+                type="email"
+                placeholder="name@company.com"
+                required
+                class="transition"
+              />
+            </div>
+
+            <div class="input-group flex flex-col gap-2">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="••••••••"
+                required
+                class="transition"
+              />
+            </div>
+
+            <div class="flex justify-between items-center text-sm">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" /> Remember me
+              </label>
+              <a href="#" class="text-brand font-semibold">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login-btn transition">
+              Login to Account
+            </button>
+          </form>
+
+          <p class="text-center text-sm mt-6">
+            Don't have an account?
+            <a href="#" class="text-brand font-bold">Sign up for free</a>
+          </p>
+        </div>`;

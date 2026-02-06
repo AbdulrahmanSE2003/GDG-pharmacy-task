@@ -1,11 +1,11 @@
-// NOTE Imports
 import { homePage } from "./route.js";
 import { productsPage } from "./route.js";
 import { cartPage } from "./route.js";
 import { loginPage } from "./route.js";
 import { products } from "./data.js";
 
-// NOTE Constants
+// ==================================================================
+// Constants
 const rootDiv = document.querySelector("#root");
 
 const pages = {
@@ -15,41 +15,48 @@ const pages = {
   login: loginPage,
 };
 
-// NOTE Burger Menu Logic
-
+// ==================================================================
+// Burger Menu Logic
 const mobileBtn = document.getElementById("mobile-btn");
 const navMenu = document.getElementById("nav-menu");
 
-mobileBtn.addEventListener("click", () => {
-  navMenu.classList.toggle("active");
-});
+if (mobileBtn) {
+  mobileBtn.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+}
 
-// NOTE Handle Navbar Tabs
-const navTabs = document.querySelectorAll(".nav-links li a");
-//FIXME console.log(navTabs);
-navTabs.forEach((navTab) =>
-  // looping to add event listener
-  navTab.addEventListener("click", (e) => {
-    //FIXME console.log(e.currentTarget, "clicked");
+// ==================================================================
+// Handle Navbar Active Tab
+function handleNavTabs(tab) {
+  const navTabs = document.querySelectorAll(".nav-links li a");
+  if (tab) {
+    navTabs.forEach((navTab) => navTab.classList.remove("active"));
+    navTabs.forEach((navTab) => {
+      if (navTab.textContent.trim().toLowerCase() === tab.toLowerCase()) {
+        navTab.classList.add("active");
+      }
+    });
+  } else {
+    navTabs.forEach((navTab) =>
+      navTab.addEventListener("click", (e) => {
+        navTabs.forEach((t) => t.classList.remove("active"));
+        navTab.classList.add("active");
+        navMenu.classList.remove("active");
 
-    //  removing active class
-    navTabs.forEach((tab) => tab.classList.remove("active"));
+        let pageKey = navTab.textContent.trim().toLowerCase();
+        loadPage(pages[pageKey]);
+      }),
+    );
+  }
+}
+handleNavTabs();
 
-    // adding active class on clicked tab
-    navTab.classList.add("active");
-
-    // Close mobile menu if open
-    navMenu.classList.remove("active");
-
-    // loading pages through navbar
-    let pageName = pages[navTab.textContent];
-    loadPage(pageName);
-  }),
-);
-
-//  NOTE controlling page dynamically
+// ==================================================================
+// Page Controller
 function loadPage(page = homePage) {
   rootDiv.innerHTML = page;
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
   if (document.querySelector("#productsContainer")) {
     showProducts();
@@ -57,24 +64,62 @@ function loadPage(page = homePage) {
 
   if (document.querySelector("#cart")) {
     showCartList();
+    calcTotalPrice();
+  }
+
+  const loginForm = document.querySelector("#loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      toggleNavbarAndFooter();
+      sessionStorage.setItem("logged", true);
+      loadPage(homePage);
+    });
   }
 }
 
-// NOTE Load HomePage at first
-loadPage();
-
-//  NOTE Controlling clicks important clicks in site
+// ==================================================================
+// Global Click Events
 rootDiv.addEventListener("click", (e) => {
   if (e.target.textContent.trim() === "Add to Cart") {
-    const id = e.target.dataset.id;
-    handleAddToCart(+id);
+    handleAddToCart(+e.target.dataset.id);
   }
-  if (e.target.textContent.trim() === "Show Now")
-    // Controlling shop now button
+
+  if (e.target.textContent.trim() === "Show Now") {
     loadPage(productsPage);
+    handleNavTabs("products");
+  }
+
+  const deleteBtn = e.target.closest(".cart-item-delete-btn");
+  if (deleteBtn) {
+    deleteItem(deleteBtn.getAttribute("data-id"));
+  }
+
+  if (e.target.classList.contains("qty-btn-dec")) {
+    decreaseQty(Number(e.target.dataset.id));
+  }
+  if (e.target.classList.contains("qty-btn-inc")) {
+    increaseQty(Number(e.target.dataset.id));
+  }
 });
 
-// NOTE showing products logic
+document.querySelector(".cart-icon").addEventListener("click", () => {
+  if (sessionStorage.getItem("logged")) {
+    loadPage(cartPage);
+    handleNavTabs("cart");
+  } else {
+    loadPage(loginPage);
+    toggleNavbarAndFooter();
+  }
+});
+
+document.querySelector(".login-icon").addEventListener("click", () => {
+  loadPage(loginPage);
+  toggleNavbarAndFooter();
+});
+
+// ==================================================================
+// Products Logic
 function showProducts() {
   const productsDiv = document.querySelector("#productsContainer");
   productsDiv.innerHTML = "";
@@ -86,130 +131,147 @@ function showProducts() {
         : product.price.toFixed(2);
 
     productsDiv.innerHTML += `
-    <div class="product-card transition  shadow-deep">
-      <div class="img-wrapper">
-        <img class="w-full transition" src="${product.image}" alt="${product.name}">
-      </div>
-      
-      <div class="product-info flex flex-col gap-4">
-      <p class="category">${product.category}</p>
-        <h4 class="title">${product.name}</h4>
-        
-        <div class="flex justify-between items-center">
-          <div class="product-price flex items-center gap-2">
-          <span class="price">$${finalPrice} </span>
-          ${product.discount > 0 ? `<span class="old text-muted">${product.price}</span>` : ""}
+      <div class="product-card transition shadow-deep">
+        <div class="img-wrapper">
+          <img class="w-full transition" src="${product.image}" alt="${product.name}">
         </div>
-
-        <button data-id="${product.id}" class="add-to-cart transition flex flex-center gap-2">Add to Cart
-        <span><svg class="transition" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span></button>
+        <div class="product-info flex flex-col gap-4">
+          <p class="category">${product.category}</p>
+          <h4 class="title">${product.name}</h4>
+          <div class="flex justify-between items-center">
+            <div class="product-price flex items-center gap-2">
+              <span class="price">$${finalPrice}</span>
+              ${product.discount > 0 ? `<span class="old text-muted">${product.price}</span>` : ""}
+            </div>
+            <button data-id="${product.id}" class="add-to-cart transition flex flex-center gap-2">Add to Cart</button>
+          </div>
         </div>
-      </div>
-    </div>`;
+      </div>`;
   });
 }
 
-// NOTE control cart logic
-
-// init at start
+// ==================================================================
+// Cart Logic
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// adding products to cart
 function handleAddToCart(id) {
   const product = products.find((p) => p.id === id);
-
-  // return if already exist
   if (cart.find((p) => p.id === id)) {
-    showToast("Product Already Exist in Cart");
+    showToast("Product Already in Cart");
     return;
   }
-
-  // adding product and save it to local storage
-  cart.push(product);
+  cart.push({ ...product, qty: 1 });
   localStorage.setItem("cart", JSON.stringify(cart));
-  showToast("Product Added to cart successfully!");
+  showToast("Added to cart successfully!");
+  document.querySelector("#qty").textContent = cart.length;
 }
 
-// cart display logic
 function showCartList() {
   const cartDiv = document.querySelector(".cart-list");
   if (!cartDiv) return;
 
   cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+  document.querySelector("#qty").textContent = cart.length;
   cartDiv.innerHTML = "";
 
   if (cart.length === 0) {
-    cartDiv.innerHTML = "<h3 class='text-center py-10'>Your cart is empty!</h3>";
+    cartDiv.innerHTML =
+      "<h3 class='text-center py-10'>Your cart is empty!</h3>";
     return;
   }
 
-  cart.map(item => {
-    cartDiv.innerHTML += `<div class="cart-item bg-white flex shadow-soft items-center gap-8">
-              <div class="img-wrapper">
-                <img class="w-full" src="${item.image}" alt="${item}" />
-              </div>
+  cart.map((item) => {
+    const unitPrice =
+      item.discount > 0
+        ? item.price - (item.price * item.discount) / 100
+        : item.price;
+    const itemTotal = (unitPrice * item.qty).toFixed(2);
 
-              <div class="cart-item-info flex flex-col gap-4 justify-start">
-                <h5>${item.name}</h5>
-                <p>${item.category}</p>
-                <span class="text-brand">$${item.price}</span>
-              </div>
-
-              <div class="cart-item-actions flex flex-col gap-8">
-                <span>
-                  <svg
-                    data-id="1"
-                    class="transition"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-trash2-icon lucide-trash-2"
-                  >
-                    <path d="M10 11v6" />
-                    <path d="M14 11v6" />
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
-                    <path d="M3 6h18" />
-                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                  </svg>
-                </span>
-
-                <div class="qty-controller flex items-center gap-4">
-                  <button class="qty-btn transition">-</button>
-                  <span class="qty-value">1</span>
-                  <button class="qty-btn transition">+</button>
-                </div>
-              </div>
-</div>`;
+    cartDiv.innerHTML += `
+      <div class="cart-item bg-white flex shadow-soft items-center gap-8">
+        <div class="img-wrapper"><img class="w-full" src="${item.image}" /></div>
+        <div class="cart-item-info flex flex-col gap-4 justify-start">
+          <h5>${item.name}</h5>
+          <span class="text-brand">$${itemTotal}</span>
+        </div>
+        <div class="cart-item-actions flex flex-col gap-8">
+          <span data-id="${item.id}" class="cart-item-delete-btn"><svg class="transition" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+          <div class="qty-controller flex items-center gap-4">
+            <button data-id="${item.id}" class="qty-btn-dec">-</button>
+            <span class="qty-value-${item.id}">${item.qty}</span>
+            <button data-id="${item.id}" class="qty-btn-inc">+</button>
+          </div>
+        </div>
+      </div>`;
   });
 }
 
-// NOTE Toast Notification
-const toast = document.querySelector(".toast-msg");
+function increaseQty(id) {
+  const item = cart.find((p) => p.id === id);
+  if (item.qty >= 10) {
+    showToast("Maximum quantity is 10.");
+    return;
+  }
+  item.qty++;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showCartList();
+  calcTotalPrice();
+}
 
+function decreaseQty(id) {
+  const item = cart.find((p) => p.id === id);
+  if (item.qty <= 1) {
+    showToast("Minimum quantity is 1.");
+    return;
+  }
+  item.qty--;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showCartList();
+  calcTotalPrice();
+}
+
+function deleteItem(id) {
+  if (confirm("Remove this item?")) {
+    cart = cart.filter((item) => item.id !== Number(id));
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showCartList();
+    calcTotalPrice();
+  }
+}
+
+function calcTotalPrice() {
+  const subtotalEl = document.querySelector(".subtotal");
+  const totalEl = document.querySelector(".total-price");
+  if (!subtotalEl || !totalEl) return;
+
+  const total = cart.reduce((acc, item) => {
+    const price =
+      item.discount > 0
+        ? item.price - (item.price * item.discount) / 100
+        : item.price;
+    return acc + price * item.qty;
+  }, 0);
+
+  subtotalEl.textContent = `$${total.toFixed(2)}`;
+  totalEl.textContent = `$${total.toFixed(2)}`;
+}
+
+// ==================================================================
+// Utils
+const toast = document.querySelector(".toast-msg");
 let toastTimeout;
 
 function showToast(message = "") {
   if (!message) return;
-
   clearTimeout(toastTimeout);
-
-  toast.style.transition = "none";
-  toast.classList.replace("down", "up");
-
-  void toast.offsetWidth;
-
-  toast.style.transition = "all 0.7s ease-in-out";
   toast.textContent = message;
   toast.classList.replace("up", "down");
-
-  toastTimeout = setTimeout(() => {
-    toast.classList.replace("down", "up");
-  }, 3000);
+  toastTimeout = setTimeout(() => toast.classList.replace("down", "up"), 3000);
 }
+
+function toggleNavbarAndFooter() {
+  document.querySelector("nav").classList.toggle("hidden");
+  document.querySelector("footer").classList.toggle("hidden");
+}
+
+loadPage();
