@@ -90,6 +90,14 @@ rootDiv.addEventListener("click", (e) => {
     handleNavTabs("products");
   }
 
+  const proceedBtn = e.target.closest(".proceed-btn");
+
+  if (proceedBtn) {
+    // console.log("Button Clicked!");
+    showToast("Order Placed Successfully!");
+    clearCart()
+  }
+
   const deleteBtn = e.target.closest(".cart-item-delete-btn");
   if (deleteBtn) {
     deleteItem(deleteBtn.getAttribute("data-id"));
@@ -254,6 +262,13 @@ function calcTotalPrice() {
 
   subtotalEl.textContent = `$${total.toFixed(2)}`;
   totalEl.textContent = `$${total.toFixed(2)}`;
+}
+
+function clearCart() {
+  cart = []
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showCartList()
+  calcTotalPrice()
 }
 
 // ==================================================================

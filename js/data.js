@@ -19,7 +19,7 @@ export const products = [
     price: 90.0,
     discount: 10,
     qty: 1,
-    image: "/images/prod-1.jpeg",
+    image: "images/prod-1.jpeg",
     description: "Broad-spectrum antibiotic for infections.",
   },
   {
@@ -29,7 +29,7 @@ export const products = [
     price: 45.0,
     discount: 5,
     qty: 1,
-    image: "/images/prod-2.jpeg",
+    image: "images/prod-2.jpeg",
     description: "Relief from seasonal allergies and hay fever.",
   },
   {
@@ -39,7 +39,7 @@ export const products = [
     price: 21.0,
     discount: 0,
     qty: 1,
-    image: "/images/prod-3.jpeg",
+    image: "images/prod-3.jpeg",
     description: "Intestinal antiseptic for diarrhea treatment.",
   },
   {
@@ -49,7 +49,7 @@ export const products = [
     price: 65.0,
     discount: 0,
     qty: 1,
-    image: "/images/prod-1.jpeg",
+    image: "images/prod-1.jpeg",
     description: "Fast-acting analgesic and anti-inflammatory.",
   },
   {
@@ -59,7 +59,7 @@ export const products = [
     price: 120.0,
     discount: 15,
     qty: 1,
-    image: "/images/prod-2.jpeg",
+    image: "images/prod-2.jpeg",
     description: "Soothes sore throat and kills bacteria.",
   },
   {
@@ -69,7 +69,7 @@ export const products = [
     price: 31.0,
     discount: 0,
     qty: 1,
-    image: "/images/prod-5.jpeg",
+    image: "images/prod-5.jpeg",
     description: "Standard relief for pain and inflammation.",
   },
   {
@@ -79,7 +79,7 @@ export const products = [
     price: 145.0,
     discount: 10,
     qty: 1,
-    image: "/images/prod-4.jpeg",
+    image: "images/prod-4.jpeg",
     description: "Fast relief from heartburn and indigestion.",
   },
 
@@ -91,7 +91,7 @@ export const products = [
     price: 2450.0,
     discount: 12,
     qty: 1,
-    image: "/images/prod-4.jpeg",
+    image: "images/prod-4.jpeg",
     description: "Automatic Blood Pressure Monitor.",
   },
   {
@@ -180,7 +180,7 @@ export const products = [
     price: 450.0,
     discount: 15,
     qty: 1,
-    image: "/images/prod-1.jpeg",
+    image: "images/prod-1.jpeg",
     description: "Best skin protection for babies.",
   },
   {
@@ -201,7 +201,7 @@ export const products = [
     price: 320.0,
     discount: 20,
     qty: 1,
-    image: "/images/prod-2.jpeg",
+    image: "images/prod-2.jpeg",
     description: "Natural nipple for easy latch on.",
   },
   {
